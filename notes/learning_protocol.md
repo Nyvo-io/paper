@@ -14,7 +14,7 @@
 
 阅读后先建立一份来源驱动的论文理解地图（paper understanding map），至少确认：论文要解决什么问题和适用条件；作者的核心主张与贡献；方法或系统由哪些部分组成；关键公式、算法、训练和推理过程；数据、实验、基线与消融提供了什么证据；结论的适用范围、假设与局限。理论、系统、实证和综述论文的重点不同，地图也应随论文调整。
 
-新论文在 `notes/<论文标识>/` 下建立 `学习笔记.md`、`进度.md` 与 `attachments/`。在开始第一轮教学前，把论文信息、理解地图的简要结论、`Learning Objectives` 和 `Learning Roadmap` 写入学习笔记；这些是导航，不是已经完成的讲解。
+新论文的 PDF 保存为 `papers/<English paper title>.pdf`，正式学习笔记直接保存为 `notes/<English paper title>.md`，配图集中保存在 `images/`，不在 `notes/` 下建立论文子目录。若需要进度文件，保存为 `notes/<English paper title> - Progress.md`。第一轮开始前只预先写入 `Paper Information`、理解地图的简要结论、`Learning Objectives` 和 `Learning Roadmap`。路线图是导航，不代表内容已经掌握；尚未学习的目标不提前扩写为完整正文。
 
 ## Definition of Understanding
 

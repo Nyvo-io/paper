@@ -1,6 +1,6 @@
 ---
 title: "π0：Vision-Language-Action Flow Model 学习笔记"
-source: "/Users/nyvo/paper/π0.pdf"
+source: "[[Pi0 - A Vision-Language-Action Flow Model for General Robot Control.pdf]]"
 type: "paper-study-notes"
 status: "in-progress"
 language: "zh-CN"
@@ -14,7 +14,7 @@ language: "zh-CN"
 ## Paper Information
 
 - 论文：*π0: A Vision-Language-Action Flow Model for General Robot Control*
-- 本地来源：`/Users/nyvo/paper/π0.pdf`
+- 本地来源：[[Pi0 - A Vision-Language-Action Flow Model for General Robot Control.pdf]]
 - 核心问题：如何让一个视觉—语言—动作模型（Vision-Language-Action Model, VLA）根据视觉观察、语言任务和机器人自身状态，生成可执行的连续机器人动作。
 
 ## Paper Understanding Map
@@ -74,7 +74,7 @@ $$
 
 关键点是：输出不是一个离散词元（token），也不是一个单独动作，而是与时间顺序对应的连续动作序列。
 
-![π0 模型框架：图像、语言与机器人状态进入模型，动作专家输出连续动作块](attachments/fig-3-model-framework.png)
+![[Pi0 - Figure 3 - Model Framework.png]]
 
 *图 1：原论文 Figure 3，PDF 第 4 页。图中展示了图像、语言、机器人状态与连续动作块之间的关系；后续学习模型架构时会再回到这张图。*
 
@@ -611,7 +611,7 @@ $$
 
 理解 VLM 主干和动作专家分别处理什么，以及它们为何仍属于一个联合模型。对应原论文 Figure 3、Section IV 与 Appendix B。
 
-![π0 模型框架：VLM 主干与动作专家共同生成动作块](attachments/fig-3-model-framework.png)
+![[Pi0 - Figure 3 - Model Framework.png]]
 
 π0 可以理解成一个 Transformer 中的两组专家权重，而不是两个互不交流的模型：
 
@@ -1283,7 +1283,7 @@ $$
 
 理解 π0 如何同时处理数据不平衡（data imbalance）和机器人形态差异（cross-embodiment heterogeneity）。对应原论文 Section V-A 与 Figure 4。
 
-![[attachments/fig-4-dataset-overview.png]]
+![[Pi0 - Figure 4 - Dataset Overview.png]]
 
 Figure 4 的左图是各数据来源按时间步计算的原始规模，右图是它们在预训练混合中的采样权重。两张图的比例不同，说明“收集了多少”不等于“训练时看到多少”。
 
@@ -1382,7 +1382,7 @@ $$
 
 理解 Section V-C 和 Figure 5 如何限定“跨机器人训练”的实际范围。这里不要求背诵每个型号，而是要判断训练覆盖了哪些形态差异，以及这些差异支持什么结论。
 
-![[attachments/fig-5-robot-systems.png]]
+![[Pi0 - Figure 5 - Robot Systems.png]]
 
 *Figure 5：原论文 Figure 5，PDF 第 6 页。图中展示了 π0 联合训练所覆盖的单臂、双臂和移动操作平台。*
 
@@ -1479,7 +1479,7 @@ $$
 
 学习先识别实验比较的对象和被控制的变量，再解释结果。对应原论文 Section VI-A 与 Figure 7。
 
-![[attachments/fig-7-out-of-box-results.png]]
+![[Pi0 - Figure 7 - Out-of-Box Results.png]]
 
 Figure 7：预训练后直接测试结果（out-of-box evaluation results），原论文 PDF 第 8 页。
 
@@ -1578,7 +1578,7 @@ $$\boxed{ \text{PaliGemma 权重} \rightarrow \text{Figure 4 robot data pre-trai
 
 理解 Section VI-B 的语言实验 如何把“语言跟随能力”和“高层策略能力”拆开测量。对应 Figure 8 和 Figure 9，PDF 第 8-9 页。
 
-![[attachments/fig-8-language-tasks.png]]
+![[Pi0 - Figure 8 - Language Tasks.png]]
 
 *Figure 8：原论文 Figure 8，展示整理桌面（bussing）、摆桌（table setting）和装购物袋（grocery bagging）三类语言条件任务。任务都由多个约两秒的中间语言片段组成。*
 
@@ -1640,7 +1640,7 @@ $$
 `flat` 条件只给总体任务名，例如“整理桌面”；`human` 条件在执行过程中给出这些更细的中间指令；`HL` 条件则由高层 VLM 自动产生中间指令。
 
 
-![[attachments/fig-9-language-evaluation.png]]
+![[Pi0 - Figure 9 - Language Evaluation.png]]
 
 *Figure 9：原论文 Figure 9，比较只给总体指令、由人提供中间指令、以及由高层 VLM 提供中间指令的条件。*
 
@@ -1688,7 +1688,7 @@ Figure 9 的直接结论是：π0 的语言跟随准确率明显高于 π0-small
 
 理解 Section VI-C、Figure 10 和 Figure 11 的实验逻辑：作者把任务专用微调数据量与任务和预训练分布的相似度放在一起考察，并比较从预训练模型继续训练与从头训练（training from scratch）。
 
-![[attachments/fig-10-finetuning-tasks.png]]
+![[Pi0 - Figure 10 - Finetuning Tasks.png]]
 
 > Figure 10（PDF 第 9 页）：五个微调与评测任务。这张图用于建立它们与预训练数据从较相似到较不相似的关系，不是实验结果图。
 
@@ -1715,7 +1715,7 @@ Figure 9 的直接结论是：π0 的语言跟随准确率明显高于 π0-small
 
 Figure 11 的总体趋势是：π0 通常优于其他方法；对于与预训练数据更相似的任务，预训练初始化往往带来更明显的收益。整体上，预训练 π0 也经常优于 `π0 (scratch)`，有些任务的提升接近两倍。但这不是“预训练对所有任务都更好”的定理；论文还观察到，先前方法中表现较强的对照反而是只在目标任务上从头训练的 ACT 和 Diffusion Policy，说明有效利用机器人预训练本身仍是一个难题。
 
-![[attachments/fig-11-finetuning-results.png]]
+![[Pi0 - Figure 11 - Finetuning Results.png]]
 
 > Figure 11（PDF 第 10 页）：横轴是各下游任务的微调数据量（$1$、$5$、$10$ 小时），纵轴是平均任务进度（average task progress）。每个任务和设置平均评测 $10$ 次。OpenVLA 和 Octo 因表现显著较差且真实机器人评测成本高，只在其中一个数据量上评测，因此不能把图中缺少的点解读为零分。
 
@@ -1739,7 +1739,7 @@ Figure 11 的总体趋势是：π0 通常优于其他方法；对于与预训练
 
 理解 Section VI-D 与 Figure 12-13 的实验设计。这一节不是突然引入新的“部署层级”，而是把前面学过的预训练和后训练放进同一组长时程、高灵巧性任务中，用消融条件（ablation conditions）比较两者的作用。
 
-![[attachments/fig-12-complex-tasks.png]]
+![[Pi0 - Figure 12 - Complex Tasks.png]]
 
 > Figure 12（PDF 第 11 页）：展示洗衣折叠、移动折衣、餐桌收拾、纸箱组装、鸡蛋装盒和外卖盒打包。这些是需要数十个基础行为相互组合的复杂多阶段任务（complex multi-stage tasks）。
 
@@ -1753,7 +1753,7 @@ Figure 13 比较三种条件：
 
 这里的 `scratch` 与 Q&A 19 保持同一实验语义：跳过论文的大规模机器人数据预训练，而不是把 PaliGemma 参数也改成随机初始化。原文在 Section VI-D 将其简写为 `without any pre-training`，结合 Section IV 与 VI-C，这里的 `pre-training` 指论文的机器人预训练阶段。
 
-![[attachments/fig-13-post-training-results.png]]
+![[Pi0 - Figure 13 - Post-Training Results.png]]
 
 > Figure 13（PDF 第 11 页）：上排是预训练数据中出现过的任务，下排是未出现过的任务；纵轴为平均任务进度，每项结果平均自 $10$ 次评测。满分 $1.0$ 表示完整执行，部分得分表示只完成了任务的一部分；详细评分规则见 Appendix E。
 
@@ -1871,7 +1871,7 @@ Figure 13 直接显示的是三种训练条件在复杂任务上的平均任务�
 5. **证据边界**：论文尚未证明哪些跨任务、跨机器人或跨领域的通用性？
 
 > [!note] Completion rule
-> 前 22 个 Q&A 表示论文的实质内容已经覆盖；本问用于验证能否把这些局部知识重新组织为完整论证。完成整合回答并修复其中最薄弱的一处后，才按照 [[../learning_protocol|Paper Learning Protocol]] 把论文状态标记为完成。
+> 前 22 个 Q&A 表示论文的实质内容已经覆盖；本问用于验证能否把这些局部知识重新组织为完整论证。完成整合回答并修复其中最薄弱的一处后，才按照 [[learning_protocol|Paper Learning Protocol]] 把论文状态标记为完成。
 
 #### Check Your Understanding
 
